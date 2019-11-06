@@ -1,0 +1,16 @@
+ext{
+    //Android 配置
+    android = [
+            compileSdkVersion :29,
+            buildToolsVersion :"29.0.1",
+            applicationId:"com.sophiemarceau_qu.meetchat",
+            minSdkVersion:21,
+            targetSdkVersion:29,
+            versionCode :1,
+            versionName :"1.0"
+    ]
+    //依赖配置
+    dependencies = [
+            "appcompat":'androidx.appcompat:appcompat:1.0.2'
+    ]
+}
