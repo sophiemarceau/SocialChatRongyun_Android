@@ -1,6 +1,23 @@
 apply plugin: 'com.android.application'
-
+/**
+ * 主Model app
+ * n个 组件Model build.gradle
+ * 统一性 ，版本，的管理
+ * Gradle提高性能
+ * 全量编译
+ * 代码增编编译 Java/Kotlin文件代码的时候编译
+ * 资源增量编译 修改Res 资源时候编译
+ *
+ * 发布App到应用市场多渠道打包
+ */
 android {
+    //调式
+    if (rootProject.hasProperty('devBuild')) {
+        splits.abi.enable = false
+        splits.density.enable = false
+        //禁用png压缩
+        aaptOptions.cruncherEnabled = false
+    }
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
@@ -9,18 +26,21 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+
+        //调式
+        resConfigs("zh","xxhdpi")
     }
     buildTypes {
-        debug{
+        debug {
             //自定义Gradle常量
-            buildConfigField("boolean","LOG_DEBUG","true")
-            buildConfigField("String","LOG_TAG","\"Meet\"")
-            buildConfigField("String","SP_NAME","\"Config\"")
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            buildConfigField("String", "LOG_TAG", "\"Meet\"")
+            buildConfigField("String", "SP_NAME", "\"Config\"")
         }
         release {
-            buildConfigField("boolean","LOG_DEBUG","false")
-            buildConfigField("String","LOG_TAG","\"Meet\"")
-            buildConfigField("String","SP_NAME","\"Config\"")
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            buildConfigField("String", "LOG_TAG", "\"Meet\"")
+            buildConfigField("String", "SP_NAME", "\"Config\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
