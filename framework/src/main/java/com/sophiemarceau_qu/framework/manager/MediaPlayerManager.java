@@ -18,7 +18,7 @@ public class MediaPlayerManager {
     public static final int MEDIA_STATUS_PAUSE = 1;
     public static final int MEDIA_STATUS_STOP = 2;
 
-    public static int MEDIA_STATUS = MEDIA_STATUS_STOP;
+    public int MEDIA_STATUS = MEDIA_STATUS_STOP;
     private static final int H_PROGRESS = 1000;
     private MediaPlayer mMediaPlayer;
     private OnMusicProgressListener musicProgressListener;
@@ -52,12 +52,10 @@ public class MediaPlayerManager {
         return mMediaPlayer.isPlaying();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void startPlay(AssetFileDescriptor path) {
-
         try {
             mMediaPlayer.reset();
-            mMediaPlayer.setDataSource(path);
+            mMediaPlayer.setDataSource(path.getFileDescriptor(), path.getStartOffset(), path.getLength());
             LogUtils.e("startplay");
             mMediaPlayer.prepare();
             mMediaPlayer.start();
@@ -98,7 +96,7 @@ public class MediaPlayerManager {
         return mMediaPlayer.getDuration();
     }
 
-    public void looping(boolean isLooping) {
+    public void setLooping(boolean isLooping) {
         mMediaPlayer.setLooping(isLooping);
     }
 
