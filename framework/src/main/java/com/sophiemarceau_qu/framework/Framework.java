@@ -2,6 +2,7 @@ package com.sophiemarceau_qu.framework;
 
 import android.content.Context;
 
+import com.sophiemarceau_qu.framework.bmob.BmobManager;
 import com.sophiemarceau_qu.framework.utils.LogUtils;
 import com.sophiemarceau_qu.framework.utils.SharePreferencesUtils;
 
@@ -31,7 +32,7 @@ public class Framework {
     public void initFramework(Context mContext) {
         LogUtils.i("initFramework");
         SharePreferencesUtils.getInstance().initSp(mContext);
-//        BmobManager.getInstance().initBmob(mContext);
+        BmobManager.getInstance().initBmob(mContext);
 //        CloudManager.getInstance().initCloud(mContext);
 //        LitePal.initialize(mContext);
 //        MapManager.getInstance().initMap(mContext);

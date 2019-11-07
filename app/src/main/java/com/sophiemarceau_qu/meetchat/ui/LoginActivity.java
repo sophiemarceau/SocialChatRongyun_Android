@@ -169,6 +169,16 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.btn_send_code:
+                DialogManager.getInstance().show(mCodeView);
+                break;
+            case R.id.btn_login:
+                login();
+                break;
+            case R.id.tv_test_login:
+//                startActivity(new Intent(this, TestLoginActivity.class));
+                break;
+        }
     }
 }
