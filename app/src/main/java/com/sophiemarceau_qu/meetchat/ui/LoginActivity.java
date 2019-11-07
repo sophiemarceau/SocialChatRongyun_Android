@@ -91,6 +91,13 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
         btnLogin = (Button) findViewById(R.id.btn_login);
         tvTestLogin = (TextView) findViewById(R.id.tv_test_login);
         tvUserAgreement = (TextView) findViewById(R.id.tv_user_agreement);
+
+        tvTestLogin.setOnClickListener(this);
+        btnSendCode.setOnClickListener(this);
+        String phone = SharePreferencesUtils.getInstance().getString(Constants.QXB_PHONE, "");
+        if (!TextUtils.isEmpty(phone)) {
+            etPhone.setText(phone);
+        }
     }
 
     private void initDialogView() {
@@ -131,7 +138,7 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
         });
     }
 
-    private void login(){
+    private void login() {
         //1.判断手机号码和验证码不为空
         final String phone = etPhone.getText().toString().trim();
         if (TextUtils.isEmpty(phone)) {

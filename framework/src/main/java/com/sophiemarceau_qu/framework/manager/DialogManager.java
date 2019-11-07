@@ -7,6 +7,9 @@ import android.view.Gravity;
 import com.sophiemarceau_qu.framework.R;
 import com.sophiemarceau_qu.framework.view.DialogView;
 
+/**
+ * 提示框管理类
+ */
 public class DialogManager {
 
     private static volatile DialogManager mInstance = null;

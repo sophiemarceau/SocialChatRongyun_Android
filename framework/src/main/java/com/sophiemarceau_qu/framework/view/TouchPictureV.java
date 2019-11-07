@@ -35,7 +35,7 @@ public class TouchPictureV extends View {
     //方块大小
     private int CARD_SIZE = 200;
     //方块坐标
-    private int LINE_W, LINE_H = 20;
+    private int LINE_W, LINE_H = 0;
     //移动方块横坐标
     private int moveX = 200;
     //误差值
@@ -113,7 +113,7 @@ public class TouchPictureV extends View {
         LINE_W = mWidth / 3 * 2;
         LINE_H = mHeight / 2 - (CARD_SIZE / 2);
         //绘制
-        canvas.drawBitmap(mNullBitmap, LINE_W, LINE_W, mPainNull);
+        canvas.drawBitmap(mNullBitmap, LINE_W, LINE_H, mPainNull);
     }
 
     /**
