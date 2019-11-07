@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    //HttpClient
+    useLibrary rootProject.ext.dependencies["httpclient"]
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {

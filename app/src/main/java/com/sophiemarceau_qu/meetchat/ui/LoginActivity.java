@@ -94,6 +94,7 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
 
         tvTestLogin.setOnClickListener(this);
         btnSendCode.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
         String phone = SharePreferencesUtils.getInstance().getString(Constants.QXB_PHONE, "");
         if (!TextUtils.isEmpty(phone)) {
             etPhone.setText(phone);
@@ -122,6 +123,8 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
             Toast.makeText(this, getString(R.string.text_login_phone_null), Toast.LENGTH_SHORT).show();
             return;
         }
+        LogUtils.e(phone);
+
         BmobManager.getInstance().requestSMS(phone, new QueryListener<Integer>() {
             @Override
             public void done(Integer integer, BmobException e) {
@@ -153,7 +156,10 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        //显示LodingView
+        LogUtils.e(phone);
+
+        LogUtils.e(code);
+        //显示LoadingView
         mLoadingView.show(getString(R.string.text_login_now_login_text));
         BmobManager.getInstance().signOrLoginByMobilePhone(phone, code, new LogInListener<IMUser>() {
             @Override

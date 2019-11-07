@@ -2,6 +2,8 @@ package com.sophiemarceau_qu.framework.bmob;
 
 import android.content.Context;
 
+import com.sophiemarceau_qu.framework.utils.LogUtils;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.BmobUser;
@@ -9,7 +11,7 @@ import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 
 public class BmobManager {
-    private static final String BMOB_SDK_ID = "";
+    private static final String BMOB_SDK_ID = "f8efae5debf319071b44339cf51153fc";
     private volatile static BmobManager mInstance = null;
 
     private BmobManager() {
@@ -52,6 +54,8 @@ public class BmobManager {
      * @param listener 回调
      */
     public void signOrLoginByMobilePhone(String phone, String code, LogInListener<IMUser> listener) {
+        LogUtils.e(phone);
+        LogUtils.e(code);
         BmobUser.signOrLoginByMobilePhone(phone, code, listener);
     }
 }
