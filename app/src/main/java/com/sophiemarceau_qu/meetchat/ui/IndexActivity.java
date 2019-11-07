@@ -1,13 +1,19 @@
 package com.sophiemarceau_qu.meetchat.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.sophiemarceau_qu.framework.base.BaseUIActivity;
+import com.sophiemarceau_qu.framework.entity.Constants;
+import com.sophiemarceau_qu.framework.utils.LogUtils;
+import com.sophiemarceau_qu.framework.utils.SharePreferencesUtils;
+import com.sophiemarceau_qu.meetchat.MainActivity;
 import com.sophiemarceau_qu.meetchat.R;
 
 public class IndexActivity extends BaseUIActivity {
@@ -19,7 +25,7 @@ public class IndexActivity extends BaseUIActivity {
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case SKIP_MAIN:
                     startMain();
                     break;
@@ -27,7 +33,6 @@ public class IndexActivity extends BaseUIActivity {
             return false;
         }
     });
-
 
 
     @Override
@@ -38,6 +43,21 @@ public class IndexActivity extends BaseUIActivity {
     }
 
     private void startMain() {
-        
+        Intent intent = new Intent();
+        boolean isFirstApp = SharePreferencesUtils.getInstance().getBoolean(Constants.QXB_IS_FIRST_APP, true);
+        LogUtils.e(""+isFirstApp);
+        if (isFirstApp) {
+            intent.setClass(this, GuideActivity.class);
+            SharePreferencesUtils.getInstance().putBoolean(Constants.QXB_IS_FIRST_APP, false);
+        } else {
+            String token = SharePreferencesUtils.getInstance().getString(Constants.QXB_TOKEN, "");
+            if (TextUtils.isEmpty(token)) {
+                intent.setClass(this, LoginActivity.class);
+            } else {
+                intent.setClass(this, MainActivity.class);
+            }
+        }
+        startActivity(intent);
+        finish();
     }
 }

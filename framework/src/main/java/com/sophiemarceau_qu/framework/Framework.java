@@ -1,5 +1,10 @@
 package com.sophiemarceau_qu.framework;
 
+import android.content.Context;
+
+import com.sophiemarceau_qu.framework.utils.LogUtils;
+import com.sophiemarceau_qu.framework.utils.SharePreferencesUtils;
+
 public class Framework {
     private volatile static Framework mFramework;
 
@@ -15,5 +20,24 @@ public class Framework {
             }
         }
         return mFramework;
+    }
+
+
+    /**
+     * 初始化框架 Model
+     *
+     * @param mContext
+     */
+    public void initFramework(Context mContext) {
+        LogUtils.i("initFramework");
+        SharePreferencesUtils.getInstance().initSp(mContext);
+//        BmobManager.getInstance().initBmob(mContext);
+//        CloudManager.getInstance().initCloud(mContext);
+//        LitePal.initialize(mContext);
+//        MapManager.getInstance().initMap(mContext);
+//        WindowHelper.getInstance().initWindow(mContext);
+//        CrashReport.initCrashReport(mContext, "d51bdd38bd", BuildConfig.LOG_DEBUG);
+//        ZXingLibrary.initDisplayOpinion(mContext);
+//        NotificationHelper.getInstance().createChannel(mContext);
     }
 }
