@@ -12,6 +12,6 @@ public class BaseUIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SystemUI.fixSysytemUI(this);
+        SystemUI.fixSystemUI(this);
     }
 }
